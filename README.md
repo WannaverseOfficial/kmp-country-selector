@@ -23,8 +23,8 @@ This library provides a customizable dropdown component that enables users to:
 |:---------|:----------|
 | Android  | ✔️        |
 | iOS      | ✔️        |
-| JVM      | ✔️        |
-| Desktop  | ❌️        |
+| Desktop  | ✔️        |
+| Web      | ❌️        |
 
 ## 🚀 Installation
 See the releases section of this repository for the latest version.

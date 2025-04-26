@@ -1,12 +1,12 @@
 [versions]
-agp = "8.7.1"
-android-compileSdk = "34"
-android-minSdk = "24"
-android-targetSdk = "34"
-androidx-activityCompose = "1.9.3"
+agp = "8.7.3"
+android-compileSdk = "35"
+android-minSdk = "35"
+android-targetSdk = "35"
+androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
-compose-multiplatform = "1.7.1"
-kotlin = "2.1.0"
+compose-multiplatform = "1.7.3"
+kotlin = "2.1.20"
 kotlinx-coroutines = "1.9.0"
 jetbrainsKotlinJvm = "1.9.24"
 
@@ -23,3 +23,4 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-mu
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+publishing = { id = "com.vanniktech.maven.publish", version = "0.30.0" }

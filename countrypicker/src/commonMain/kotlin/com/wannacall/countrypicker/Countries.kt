@@ -1,10 +1,9 @@
 package com.wannacall.countrypicker
 
+import com.wannacall.countrypicker.generated.resources.Res
+import com.wannacall.countrypicker.generated.resources.*
 import com.wannacall.countrypicker.native.getLocaleLanguageTag
 import com.wannacall.countrypicker.native.getLocalizedCountryName
-import wc_country_picker.countrypicker.generated.resources.Res
-import wc_country_picker.countrypicker.generated.resources.*
-
 
 /**
  * The `Countries` object is a singleton that contains a collection of predefined `Country` objects.
@@ -1801,4 +1800,3 @@ object Countries {
             VA, VC, VE, VG, VI, VN, VU, WF, WS, YE, YT, ZA, ZM, ZW
         )
 }
-

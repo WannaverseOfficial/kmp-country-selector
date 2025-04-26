@@ -1,3 +1,4 @@
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -5,7 +6,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.publishing)
 }
+
+group = "com.wannacall"
+version = "0.0.0"
 
 kotlin {
     androidTarget {
@@ -19,7 +24,6 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
     jvm()
 
     sourceSets {
@@ -44,7 +48,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
         }
     }
 
@@ -58,7 +62,41 @@ compose.desktop {
     application {
         nativeDistributions {
             packageName = "com.wannacall.countrypicker"
-            packageVersion = "1.0.0"
+            packageVersion = version.toString()
+        }
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
+
+    coordinates(group.toString(), "countrypicker", version.toString())
+
+    pom {
+        name = "Country Picker"
+        description = "A country picker library"
+        inceptionYear = "2025"
+        url = "https://github.com/WannaCall/wc-country-picker"
+        licenses {
+            license {
+                name = "GNU General Public License"
+                url = "https://www.gnu.org/licenses/gpl-3.0.txt"
+                distribution = "https://www.gnu.org/licenses/gpl-3.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "wannacall"
+                name = "WannaCall"
+                url = "https://github.com/WannaCall"
+            }
+        }
+        scm {
+            url = "https://github.com/WannaCall/wc-country-picker"
+            connection = "scm:git:git://github.com/WannaCall/wc-country-picker.git"
+            developerConnection = "scm:git:ssh://git@github.com/WannaCall/wc-country-picker.git"
         }
     }
 }

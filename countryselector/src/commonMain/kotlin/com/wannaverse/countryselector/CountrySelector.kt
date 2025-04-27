@@ -47,7 +47,7 @@ import org.jetbrains.compose.resources.painterResource
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CountryPickerIcon(
+fun CountrySelector(
     country: Country,
     onSelection: (Country) -> Unit,
     pickerRowContent: @Composable (Country) -> Unit = { defaultCountry ->

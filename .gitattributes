@@ -1,1 +1,11 @@
 * text=auto
+
+*.sh text eol=lf
+*.bat text eol=crlf
+
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+
+/gradlew text eol=lf

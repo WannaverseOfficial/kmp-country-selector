@@ -8,4 +8,4 @@
 *.jpeg binary
 *.png binary
 
-/gradlew text eol=lf
+gradlew text eol=lf

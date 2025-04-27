@@ -45,7 +45,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
-            implementation(project(":countrypicker"))
+            implementation(project(":countryselector"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -55,11 +55,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.wannacall.countrypicker.demo"
+    namespace = "com.wannaverse.countryselector.demo"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.wannacall.countrypicker.demo"
+        applicationId = "com.wannaverse.countryselector.demo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -87,11 +87,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.wannacall.countrypicker.demo.MainKt"
+        mainClass = "com.wannaverse.countryselector.demo.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.wannacall.countrypicker.demo"
+            packageName = "com.wannaverse.countryselector.demo"
             packageVersion = "1.0.0"
         }
     }

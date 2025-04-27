@@ -1,4 +1,4 @@
-rootProject.name = "wc-country-picker"
+rootProject.name = "kmp-country-selector"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -29,4 +29,4 @@ dependencyResolutionManagement {
 }
 
 include(":demo")
-include(":countrypicker")
+include(":countryselector")

@@ -1,6 +1,6 @@
 <img alt="Wannaverse Logo" src="./assets/logo.png" width="288"/>
 
-# 🚩 Country Code Picker
+# 🚩 Country Selector
 A Kotlin Multiplatform **Country Code** and **Dial Code** Picker with flag support and search functionality.
 This library provides a customizable dropdown component that enables users to:
 
@@ -33,7 +33,7 @@ See the releases section of this repository for the latest version.
 
 To your `build.gradle` (ideally, under `commonMain.dependencies`) add:
 ```kotlin
-implementation "com.wannacall:countrypicker:<version>"
+implementation "com.wannaverse:countryselector:<version>"
 ```
 
 ## Usage
@@ -56,6 +56,11 @@ Box(
 }
 ```
 
+To change the language of the country picker manually, before creating the `CountryPickerIcon` set:
+```kotlin
+Countries.languageTag = "es" // as long as it's a IETF language tag
+```
+
 ## Screenshots
 ### Android
 |              Light Theme               |              Dark Theme               |
@@ -72,7 +77,7 @@ Box(
 | ![](./assets/IPhone_light_search.png) | ![](./assets/IPhone_dark_search.png) |
 
 ## 📄 License
-GNU GENERAL PUBLIC LICENSE. See [LICENSE](./LICENSE) for details.
+MIT LICENSE. See [LICENSE](./LICENSE) for details.
 
 ## 🙌 Contributing
 Pull requests and feature requests are welcome!

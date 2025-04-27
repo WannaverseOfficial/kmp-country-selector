@@ -1,5 +1,0 @@
-package com.wannacall.countrypicker.native
-
-expect fun getLocaleLanguageTag(): String
-
-expect fun getLocalizedCountryName(countryCode: String, localeLanguageTag: String = getLocaleLanguageTag()): String

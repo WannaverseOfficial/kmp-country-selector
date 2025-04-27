@@ -4,13 +4,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,35 +30,70 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
 /**
- * Composable function that displays an icon representing a country and opens a bottom sheet for selecting a country.
+ * Composable function that displays a country picker button with customizable content.
  *
- * This function shows a clickable row with the country's flag, international dialing code, and a down arrow icon.
- * When clicked, a modal bottom sheet is displayed where the user can select a country from a picker.
- * The selected country is passed to the `onSelection` callback.
+ * This function shows a clickable row with user-defined content for the selected country (e.g., flag, dial code, country name).
+ * When clicked, it opens a modal bottom sheet where users can select a country.
  *
- * @param country The `Country` object representing the currently displayed country with its name, code, and flag.
- * @param onSelection A function that will be invoked when a country is selected from the bottom sheet.
- *                    The selected `Country` object is passed to this function.
+ * The selected country is passed to the `onSelection` callback, and the content inside the picker can be customized
+ * using the `pickerRowContent` composable lambda.
+ *
+ * @param country The currently selected [Country] to be displayed in the button.
+ * @param onSelection Callback invoked when a country is selected from the bottom sheet.
+ * Receives the selected [Country] as a parameter.
+ * @param pickerRowContent A composable lambda that defines how each country should be displayed.
+ * It is used both for displaying the selected country and for listing countries in the bottom sheet.
+ * Defaults to showing the flag and international dialing code.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CountryPickerIcon(
     country: Country,
-    onSelection: (Country) -> Unit
+    onSelection: (Country) -> Unit,
+    pickerRowContent: @Composable (Country) -> Unit = { defaultCountry ->
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Image(
+                painter = painterResource(resource = defaultCountry.flagImageResource),
+                contentDescription = defaultCountry.countryName,
+                modifier = Modifier
+                    .size(24.dp)
+                    .clip(CircleShape)
+            )
+            Text(defaultCountry.internationalDialCode)
+        }
+    },
+    searchBarContent: @Composable (
+        searchQuery: String,
+        onQueryChange: (String) -> Unit,
+        hasError: Boolean
+    ) -> Unit = { searchQuery, onQueryChange, hasError ->
+        TextField(
+            value = searchQuery,
+            onValueChange = onQueryChange,
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Search") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "Search countries"
+                )
+            },
+            isError = hasError,
+            placeholder = { Text("Enter country name or code") }
+        )
+    }
 ) {
     var showBottomSheet by remember { mutableStateOf(false) }
+
     Row(
         modifier = Modifier.clickable { showBottomSheet = true },
         horizontalArrangement = Arrangement.spacedBy(2.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            painter = painterResource(country.flagImageResource),
-            contentDescription = country.countryName,
-            modifier = Modifier.clip(CircleShape)
-        )
-
-        Text(country.internationalDialCode)
+        pickerRowContent(country)
 
         Icon(
             imageVector = Icons.Default.KeyboardArrowDown,
@@ -65,17 +104,21 @@ fun CountryPickerIcon(
     val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState()
     val closeSheet: () -> Unit = {
-        coroutineScope
-            .launch { sheetState.hide() }
+        coroutineScope.launch { sheetState.hide() }
             .invokeOnCompletion { showBottomSheet = false }
     }
+
     if (showBottomSheet) ModalBottomSheet(
         onDismissRequest = closeSheet,
         sheetState = sheetState
     ) {
-        CountryPicker {
-            onSelection(it)
-            closeSheet()
-        }
+        CountryPicker(
+            onSelection = {
+                onSelection(it)
+                closeSheet()
+            },
+            pickerRowContent = pickerRowContent,
+            searchBarContent = searchBarContent
+        )
     }
 }

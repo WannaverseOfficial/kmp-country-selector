@@ -1,3 +1,5 @@
+<img alt="Wannaverse Logo" src="./assets/logo.png" width="288"/>
+
 # 🚩 Country Code Picker
 A Kotlin Multiplatform **Country Code** and **Dial Code** Picker with flag support and search functionality.
 This library provides a customizable dropdown component that enables users to:

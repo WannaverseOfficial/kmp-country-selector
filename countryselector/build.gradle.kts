@@ -82,9 +82,9 @@ mavenPublishing {
         url = "https://github.com/WannaverseOfficial/kmp-country-selector"
         licenses {
             license {
-                name = "GNU General Public License"
-                url = "https://www.gnu.org/licenses/gpl-3.0.txt"
-                distribution = "https://www.gnu.org/licenses/gpl-3.0.txt"
+                name = "MIT License"
+                url = "https://opensource.org/licenses/MIT"
+                distribution = "https://opensource.org/licenses/MIT"
             }
         }
         developers {

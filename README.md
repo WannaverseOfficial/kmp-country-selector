@@ -1,5 +1,8 @@
 <img alt="Wannaverse Logo" src="./assets/logo.png" width="288"/>
 
+[![Build iOS](https://github.com/WannaverseOfficial/kmp-country-selector/actions/workflows/build-mac.yaml/badge.svg)](https://github.com/WannaverseOfficial/kmp-country-selector/actions)
+[![Build Linux](https://github.com/WannaverseOfficial/kmp-country-selector/actions/workflows/build-linux.yaml/badge.svg)](https://github.com/WannaverseOfficial/kmp-country-selector/actions)
+
 # 🚩 Country Selector
 A Kotlin Multiplatform **Country Code** and **Dial Code** Picker with flag support and search functionality.
 This library provides a customizable dropdown component that enables users to:

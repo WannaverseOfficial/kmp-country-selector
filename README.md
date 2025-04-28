@@ -41,6 +41,8 @@ implementation "com.wannaverse:countryselector:<version>"
 
 ## Usage
 
+[KDocs](https://wannaverseofficial.github.io/kmp-country-selector/)
+
 Below is a sample code that you may use.
 Be aware: The `Box` is required if you are using any sort of scroll behavior with your screen. This is because this `CountryPickerIcon` uses a [`LazyColumn`](https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/package-summary?_gl=1*nq0b0g*_up*MQ..*_ga*MzU2NTQxNzE1LjE3NDU2MTE0ODg.*_ga_6HH9YJMN9M*MTc0NTYxMTQ4OC4xLjAuMTc0NTYxMTQ4OC4wLjAuNjU4NTM2NzAx#LazyColumn(androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.LazyListState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.ui.Alignment.Horizontal,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)) for it's scrollable functionality.
 ```kotlin

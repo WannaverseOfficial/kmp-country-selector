@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.publishing)
+    alias(libs.plugins.dokka)
 }
 
 group = "com.wannaverse"
@@ -99,4 +100,8 @@ mavenPublishing {
             developerConnection = "scm:git:ssh://git@github.com/WannaverseOfficial/kmp-country-selector.git"
         }
     }
+}
+
+tasks.dokkaHtml {
+   outputDirectory.set(file("${rootDir}/docs"))
 }

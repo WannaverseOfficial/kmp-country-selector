@@ -1,5 +1,8 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -20,6 +23,19 @@ kotlin {
         }
         publishLibraryVariants("release")
         publishLibraryVariantsGroupedByFlavor = true
+
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        instrumentedTestVariant {
+            sourceSetTree.set(KotlinSourceSetTree.test)
+            dependencies {
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.test.ktx)
+                implementation(libs.compose.ui.test.junit4.android) {
+                    exclude(group = "androidx.compose.ui", module = "ui-test")
+                }
+                debugImplementation(libs.compose.ui.test.manifest)
+            }
+        }
     }
 
     iosX64()
@@ -36,6 +52,13 @@ kotlin {
             implementation(compose.components.resources)
             implementation(libs.androidx.lifecycle.viewmodel)
         }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(kotlin("test-annotations-common"))
+            implementation(libs.assertk)
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.uiTest)
+        }
     }
 }
 
@@ -45,6 +68,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"//seeeeeeeeeeeeeeeee
     }
 
     buildTypes {
@@ -57,6 +81,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
 }
 
 compose.desktop {

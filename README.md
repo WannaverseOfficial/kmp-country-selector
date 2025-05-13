@@ -34,10 +34,24 @@ This library provides a customizable dropdown component that enables users to:
 ## 🚀 Installation
 See the releases section of this repository for the latest version.
 
-To your `build.gradle` (ideally, under `commonMain.dependencies`) add:
+To your `build.gradle` under `commonMain.dependencies` add:
 ```kotlin
 implementation "com.wannaverse:countryselector:<version>"
 ```
+
+**Important** this library uses native code to handle translations. You will need the additional dependencies depending on the targets you are building for:
+
+**Android** under `androidMain.dependencies`:
+implementation("com.wannaverse:countryselector-android:<version>")
+
+**iOS (ARM)** under `iosMain.dependencies`:
+implementation("com.wannaverse:countryselector-iosarm64:<version>")
+
+**iOS x64** under `iosMain.dependencies`:
+implementation("com.wannaverse:countryselector-iosx64:<version>")
+
+**jvm**:
+implementation("com.wannaverse:countryselector-jvm:<version>")
 
 ## Usage
 

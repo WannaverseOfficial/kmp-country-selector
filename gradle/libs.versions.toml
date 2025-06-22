@@ -1,7 +1,7 @@
 [versions]
 agp = "8.7.3"
 android-compileSdk = "35"
-android-minSdk = "35"
+android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
@@ -12,7 +12,6 @@ jetbrainsKotlinJvm = "2.1.21"
 assertk = "0.28.1"
 composeTest = "1.7.8"
 coreKtxTest = "1.6.1"
-uiAndroid = "1.7.8"
 coreKtxCore = "1.15.0"
 
 [libraries]
@@ -24,7 +23,6 @@ compose-ui-test-junit4-android = { module = "androidx.compose.ui:ui-test-junit4-
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeTest" }
 androidx-test-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxTest" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxCore" }
-androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

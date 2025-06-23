@@ -31,5 +31,5 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-mu
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
-publishing = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
+publishing = { id = "com.vanniktech.maven.publish", version = "0.33.0" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }

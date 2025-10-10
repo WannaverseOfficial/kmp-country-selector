@@ -7,8 +7,7 @@
 A Kotlin Multiplatform **Country Code** and **Dial Code** Picker with flag support and search functionality.
 This library provides a customizable dropdown component that enables users to:
 
-<img src="./assets/IPhone_dark_search.png" style="height:400px; width:auto; margin-right:10px;" alt="IPhone_dark_search"/>
-<img src="./assets/Android_light_search.png" style="height:400px; width:auto;" alt="Android_light_search"/>
+<img src="./assets/IPhone_dark_search.png" style="height:400px; width:auto; margin-right:10px;" alt="IPhone_dark_search"/> <img src="./assets/Android_light_search.png" style="height:400px; width:auto;" alt="Android_light_search"/>
 
 * Search and select any country
 * Retrieve the country name, ISO country code (GB, US, FR etc.)

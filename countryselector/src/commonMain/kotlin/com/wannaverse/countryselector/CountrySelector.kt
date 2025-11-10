@@ -73,6 +73,7 @@ fun CountrySelector(
         TextField(
             value = searchQuery,
             onValueChange = onQueryChange,
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(),
             label = { Text("Search") },
             leadingIcon = {

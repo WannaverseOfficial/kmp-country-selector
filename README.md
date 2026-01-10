@@ -1,4 +1,4 @@
-<img alt="Wannaverse Logo" src="./assets/logo.png" width="288"/>
+<img width="579" height="116" alt="image" src="https://github.com/user-attachments/assets/3c071283-137c-4391-a7de-f710e4486c13" />
 
 [![Build iOS](https://github.com/WannaverseOfficial/kmp-country-selector/actions/workflows/build-mac.yaml/badge.svg)](https://github.com/WannaverseOfficial/kmp-country-selector/actions)
 [![Build Linux](https://github.com/WannaverseOfficial/kmp-country-selector/actions/workflows/build-linux.yaml/badge.svg)](https://github.com/WannaverseOfficial/kmp-country-selector/actions)

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.wannaverse.countryselector.Countries
+import com.wannaverse.countryselector.Country
 
 /**
  * ViewModel for managing the state of the country picker.
@@ -47,6 +48,14 @@ class CountryPickerViewModel : ViewModel() {
             it.countryName.contains(searchQuery, ignoreCase = true) ||
                     it.countryCode.contains(searchQuery, ignoreCase = true) ||
                     it.internationalDialCode.contains(searchQuery, ignoreCase = true)
-        }
+        }.sortedWith(
+            compareBy<Country> {
+                !it.countryName.startsWith(searchQuery, ignoreCase = true)
+            }.thenBy {
+                it.countryName.length
+            }.thenBy {
+                it.countryName
+            }
+        )
     }
 }

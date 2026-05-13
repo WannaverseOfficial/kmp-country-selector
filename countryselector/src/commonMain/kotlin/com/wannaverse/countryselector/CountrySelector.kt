@@ -27,7 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import com.wannaverse.countryselector.generated.resources.Res
+import com.wannaverse.countryselector.generated.resources.open_picker_content_description
+import com.wannaverse.countryselector.generated.resources.search_content_description
+import com.wannaverse.countryselector.generated.resources.search_label
+import com.wannaverse.countryselector.generated.resources.search_placeholder
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Composable function that displays a country picker button with customizable content.
@@ -74,15 +80,15 @@ fun CountrySelector(
             value = searchQuery,
             onValueChange = onQueryChange,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Search") },
+            label = { Text(stringResource(Res.string.search_label)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search countries"
+                    contentDescription = stringResource(Res.string.search_content_description)
                 )
             },
             isError = hasError,
-            placeholder = { Text("Enter country name or code") }
+            placeholder = { Text(stringResource(Res.string.search_placeholder)) }
         )
     }
 ) {
@@ -97,7 +103,7 @@ fun CountrySelector(
 
         Icon(
             imageVector = Icons.Default.KeyboardArrowDown,
-            contentDescription = "Open country picker"
+            contentDescription = stringResource(Res.string.open_picker_content_description)
         )
     }
 

@@ -1,0 +1,7 @@
+<resources>
+    <string name="no_countries_found">कोई देश नहीं मिला</string>
+    <string name="search_label">खोजें</string>
+    <string name="search_placeholder">देश का नाम या कोड दर्ज करें</string>
+    <string name="search_content_description">देश खोजें</string>
+    <string name="open_picker_content_description">देश चुनें</string>
+</resources>

@@ -17,7 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.wannaverse.countryselector.generated.resources.Res
+import com.wannaverse.countryselector.generated.resources.no_countries_found
+
 import com.wannaverse.countryselector.viewmodel.CountryPickerViewModel
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Composable function that displays a searchable list of countries and allows the user to select one.
@@ -57,7 +61,7 @@ internal fun CountryPicker(
 
         if (viewModel.countries.isEmpty()) {
             Text(
-                text = "No countries found",
+                text = stringResource(Res.string.no_countries_found),
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }

@@ -1,0 +1,7 @@
+<resources>
+    <string name="no_countries_found">No countries found</string>
+    <string name="search_label">Search</string>
+    <string name="search_placeholder">Enter country name or code</string>
+    <string name="search_content_description">Search countries</string>
+    <string name="open_picker_content_description">Open country picker</string>
+</resources>

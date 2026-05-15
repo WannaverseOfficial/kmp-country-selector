@@ -91,6 +91,33 @@ To change the language of the country picker manually, before creating the `Coun
 Countries.languageTag = "es" // as long as it's a IETF language tag
 ```
 
+### Adding UI Translations
+
+Country names are translated automatically by the device OS. The picker's UI strings (search bar label, placeholder, empty state message) use Compose Multiplatform string resources and can be translated by contributing a locale file.
+
+To add a translation, create a new file at:
+```
+countryselector/src/commonMain/composeResources/values-<language-code>/strings.xml
+```
+
+For example, for French (`fr`):
+```
+countryselector/src/commonMain/composeResources/values-fr/strings.xml
+```
+
+The file must define all 5 keys:
+```xml
+<resources>
+    <string name="no_countries_found"><!-- empty state message --></string>
+    <string name="search_label"><!-- search field label --></string>
+    <string name="search_placeholder"><!-- search field placeholder --></string>
+    <string name="search_content_description"><!-- search icon accessibility label --></string>
+    <string name="open_picker_content_description"><!-- dropdown arrow accessibility label --></string>
+</resources>
+```
+
+The correct string will be picked up automatically based on the device locale — no code changes needed. Use standard [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) for the folder suffix (e.g. `values-de`, `values-fr`, `values-zh`, `values-hi`).
+
 You can further customize the look and feel of the picker so that it's exactly how you want it:
 ```kotlin
 Box(

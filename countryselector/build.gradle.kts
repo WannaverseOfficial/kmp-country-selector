@@ -1,8 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -14,7 +11,7 @@ plugins {
 }
 
 group = "com.wannaverse"
-version = "1.2.0"
+version = "1.2.1"
 
 kotlin {
     androidTarget {
@@ -23,41 +20,27 @@ kotlin {
         }
         publishLibraryVariants("release")
         publishLibraryVariantsGroupedByFlavor = true
-
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        instrumentedTestVariant {
-            sourceSetTree.set(KotlinSourceSetTree.test)
-            dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.test.ktx)
-                implementation(libs.compose.ui.test.junit4.android) {
-                    exclude(group = "androidx.compose.ui", module = "ui-test")
-                }
-                debugImplementation(libs.compose.ui.test.manifest)
-            }
-        }
     }
 
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
     jvm()
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
+            implementation(libs.runtime)
+            implementation(libs.foundation)
+            implementation(libs.material3)
+            implementation(libs.ui)
+            implementation(libs.components.resources)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.material.icons.extended)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(kotlin("test-annotations-common"))
             implementation(libs.assertk)
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+            implementation(libs.ui.test)
         }
     }
 }
@@ -83,7 +66,14 @@ android {
     }
 
 }
-
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.test.ktx)
+    implementation(libs.compose.ui.test.junit4.android) {
+        exclude(group = "androidx.compose.ui", module = "ui-test")
+    }
+    debugImplementation(libs.compose.ui.test.manifest)
+}
 compose.desktop {
     application {
         nativeDistributions {
@@ -96,7 +86,9 @@ compose.desktop {
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    signAllPublications()
+    if (!project.hasProperty("skipSigning")) {
+        signAllPublications()
+    }
 
     coordinates(group.toString(), "countryselector", version.toString())
 

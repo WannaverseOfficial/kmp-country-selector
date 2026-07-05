@@ -36,14 +36,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(libs.runtime)
-            implementation(libs.foundation)
-            implementation(libs.material3)
-            implementation(libs.ui)
-            implementation(libs.material.icons.extended)
-            implementation(libs.components.resources)
+            implementation(jetbrains.bundles.compose)
             implementation(libs.ui.tooling.preview)
-
             implementation(project(":countryselector"))
         }
         desktopMain.dependencies {
@@ -81,7 +75,7 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.ui.tooling.preview)
 }
 
 compose.desktop {

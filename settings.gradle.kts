@@ -16,6 +16,11 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    versionCatalogs {
+        create("jetbrains") {
+            from(files("gradle/jetbrains.versions.toml"))
+        }
+    }
     repositories {
         google {
             mavenContent {

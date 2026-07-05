@@ -1,4 +1,4 @@
-import com.vanniktech.maven.publish.SonatypeHost
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -28,13 +28,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.runtime)
-            implementation(libs.foundation)
-            implementation(libs.material3)
-            implementation(libs.ui)
-            implementation(libs.components.resources)
+            implementation(jetbrains.bundles.compose)
             implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.material.icons.extended)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
@@ -84,7 +79,7 @@ compose.desktop {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
 
     if (!project.hasProperty("skipSigning")) {
         signAllPublications()

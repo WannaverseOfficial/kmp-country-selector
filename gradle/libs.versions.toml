@@ -5,9 +5,7 @@ android-minSdk = "24"
 android-targetSdk = "36"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.10.0"
-componentsResources = "1.11.1"
 compose-multiplatform = "1.11.1"
-foundation = "1.11.1"
 kotlin = "2.4.0"
 kotlinx-coroutines = "1.11.0"
 jetbrainsKotlinJvm = "2.4.0"
@@ -15,16 +13,11 @@ assertk = "0.28.1"
 composeTest = "1.11.4"
 coreKtxTest = "1.7.0"
 coreKtxCore = "1.19.0"
-material3 = "1.9.0"
-materialIconsExtended = "1.7.3"
-runtime = "1.11.1"
 uiToolingPreview = "1.11.1"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "componentsResources" }
-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "foundation" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
 compose-ui-test-junit4-android = { module = "androidx.compose.ui:ui-test-junit4-android", version.ref = "composeTest" }
@@ -32,10 +25,6 @@ compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", ve
 androidx-test-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxTest" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxCore" }
 
-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "runtime" }
-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "uiToolingPreview" }
 ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "uiToolingPreview" }
 ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 
@@ -46,5 +35,5 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-mu
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
-publishing = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
-dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
+publishing = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
+dokka = { id = "org.jetbrains.dokka", version = "2.2.0" }

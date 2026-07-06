@@ -1,25 +1,33 @@
-
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.publishing)
-    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.multiplatform.library)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.publishing)
 }
 
 group = "com.wannaverse"
 version = "1.2.1"
 
 kotlin {
-    androidTarget {
+
+    jvmToolchain(21)
+    android {
+        namespace = "com.wannaverse.countryselector"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+
         compilerOptions {
             jvmTarget = JvmTarget.JVM_11
         }
-        publishLibraryVariants("release")
-        publishLibraryVariantsGroupedByFlavor = true
+        withHostTest {
+            isIncludeAndroidResources = true
+        }
+        androidResources {
+            enable = true
+        }
     }
 
     iosArm64()
@@ -27,6 +35,14 @@ kotlin {
     jvm()
 
     sourceSets {
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.test.ktx)
+                implementation(libs.compose.ui.test.junit4.android)
+                implementation(libs.compose.ui.test.manifest)
+            }
+        }
         commonMain.dependencies {
             implementation(jetbrains.bundles.compose)
             implementation(libs.androidx.lifecycle.viewmodel)
@@ -40,35 +56,6 @@ kotlin {
     }
 }
 
-android {
-    namespace = "com.wannaverse.countryselector"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-}
-dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.test.ktx)
-    implementation(libs.compose.ui.test.junit4.android) {
-        exclude(group = "androidx.compose.ui", module = "ui-test")
-    }
-    debugImplementation(libs.compose.ui.test.manifest)
-}
 compose.desktop {
     application {
         nativeDistributions {
@@ -114,6 +101,8 @@ mavenPublishing {
     }
 }
 
-tasks.dokkaHtml {
-   outputDirectory.set(file("${rootDir}/docs"))
+dokka {
+    dokkaPublications.html {
+        outputDirectory.set(file("${rootDir}/docs"))
+    }
 }

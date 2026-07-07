@@ -35,3 +35,4 @@ dependencyResolutionManagement {
 
 include(":demo")
 include(":countryselector")
+include(":androidApp")

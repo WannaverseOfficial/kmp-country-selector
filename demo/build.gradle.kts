@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.multiplatform.library)
-    alias(libs.plugins.compose.multiplatform)
+    alias(jetbrains.plugins.compose)
     alias(libs.plugins.compose.compiler)
 }
 
@@ -41,12 +41,11 @@ kotlin {
         val desktopMain = getByName("desktopMain")
 
         androidMain.dependencies {
-            implementation(libs.ui.tooling.preview)
+            implementation(jetbrains.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
             implementation(jetbrains.bundles.compose)
-            implementation(libs.ui.tooling.preview)
             implementation(project(":countryselector"))
         }
         desktopMain.dependencies {

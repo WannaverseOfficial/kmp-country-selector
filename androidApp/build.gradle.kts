@@ -31,6 +31,6 @@ android {
 }
 
 dependencies {
-    debugImplementation(libs.ui.tooling.preview)
+    debugImplementation(jetbrains.ui.tooling.preview)
     implementation(project(":demo"))
 }

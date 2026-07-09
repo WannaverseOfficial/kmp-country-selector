@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.multiplatform.library)
-    alias(libs.plugins.compose.multiplatform)
+    alias(jetbrains.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dokka)
     alias(libs.plugins.publishing)
@@ -51,7 +51,7 @@ kotlin {
             implementation(kotlin("test"))
             implementation(kotlin("test-annotations-common"))
             implementation(libs.assertk)
-            implementation(libs.ui.test)
+            implementation(jetbrains.ui.test)
         }
     }
 }

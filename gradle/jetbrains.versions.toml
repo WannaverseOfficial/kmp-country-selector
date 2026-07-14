@@ -1,0 +1,28 @@
+[versions]
+compose = "1.11.1"
+materialIconsExtended = "1.7.3"
+material3 = "1.11.0-alpha07"
+
+[libraries]
+compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose" }
+compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose" }
+compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose" }
+compose-components-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "compose" }
+compose-materialIconsExtended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
+compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "material3" }
+ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "compose" }
+ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
+[bundles]
+compose = [
+    "compose-foundation",
+    "compose-runtime",
+    "compose-ui",
+    "compose-components-resources",
+    "compose-materialIconsExtended",
+    "compose-material3",
+    "ui-test",
+    "ui-tooling-preview"
+]
+
+[plugins]
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }

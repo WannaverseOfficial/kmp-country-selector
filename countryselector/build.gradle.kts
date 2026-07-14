@@ -1,87 +1,59 @@
-import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.publishing)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.multiplatform.library)
+    alias(jetbrains.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.publishing)
 }
 
 group = "com.wannaverse"
-version = "1.2.0"
+version = "1.2.1"
 
 kotlin {
-    androidTarget {
+
+    jvmToolchain(21)
+    android {
+        namespace = "com.wannaverse.countryselector"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+
         compilerOptions {
             jvmTarget = JvmTarget.JVM_11
         }
-        publishLibraryVariants("release")
-        publishLibraryVariantsGroupedByFlavor = true
-
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        instrumentedTestVariant {
-            sourceSetTree.set(KotlinSourceSetTree.test)
-            dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.test.ktx)
-                implementation(libs.compose.ui.test.junit4.android) {
-                    exclude(group = "androidx.compose.ui", module = "ui-test")
-                }
-                debugImplementation(libs.compose.ui.test.manifest)
-            }
+        withHostTest {
+            isIncludeAndroidResources = true
+        }
+        androidResources {
+            enable = true
         }
     }
 
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
     jvm()
 
     sourceSets {
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.test.ktx)
+                implementation(libs.compose.ui.test.junit4.android)
+                implementation(libs.compose.ui.test.manifest)
+            }
+        }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
+            implementation(jetbrains.bundles.compose)
             implementation(libs.androidx.lifecycle.viewmodel)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(kotlin("test-annotations-common"))
             implementation(libs.assertk)
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+            implementation(jetbrains.ui.test)
         }
     }
-}
-
-android {
-    namespace = "com.wannaverse.countryselector"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
 }
 
 compose.desktop {
@@ -94,9 +66,11 @@ compose.desktop {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
 
-    signAllPublications()
+    if (!project.hasProperty("skipSigning")) {
+        signAllPublications()
+    }
 
     coordinates(group.toString(), "countryselector", version.toString())
 
@@ -127,6 +101,8 @@ mavenPublishing {
     }
 }
 
-tasks.dokkaHtml {
-   outputDirectory.set(file("${rootDir}/docs"))
+dokka {
+    dokkaPublications.html {
+        outputDirectory.set(file("${rootDir}/docs"))
+    }
 }

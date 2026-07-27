@@ -4,6 +4,7 @@ import java.util.IllformedLocaleException
 import java.util.Locale
 
 actual fun getLocalizedCountryName(countryCode: String, localeLanguageTag: String): String {
+    NON_ISO_COUNTRY_NAMES[countryCode]?.let { return it }
     return try {
         val displayCountry = Locale.Builder()
             .setLanguageTag(localeLanguageTag)

@@ -10,7 +10,7 @@ kotlinx-coroutines = "1.11.0"
 assertk = "0.28.1"
 composeTest = "1.11.4"
 coreKtxTest = "1.7.0"
-coreKtxCore = "1.19.0"
+coreKtxCore = "1.19.1"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
